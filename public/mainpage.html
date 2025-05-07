@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Main Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #eee;
+      padding: 10px 20px;
+    }
+    .header-content img {
+      height: 50px;
+      margin-left: 20px;
+    }
+    .greeting {
+      flex-grow: 1;
+      text-align: center;
+      font-weight: bold;
+    }
+    .login-button {
+      padding: 8px 16px;
+    }
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .button-container button {
+      margin: 5px;
+      padding: 10px 20px;
+    }
+    .section {
+      display: none;
+      padding: 20px;
+    }
+    .section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body onload="displayGreeting(); showContent('home')">
+
+  <div class="header-content">
+    <img src="./pictures/logo.png" alt="grc logo" />
+    <div id="greeting" class="greeting">Good Day!</div>
+    <a href="login.html"><button class="login-button">Login</button></a>
+  </div>
+
+  <div class="button-container">
+    <button onclick="showContent('home')">Home</button>
+    <button onclick="showContent('about')">About</button>
+    <button onclick="showContent('contact')">Contact Us</button>
+    <button onclick="showContent('whats-new')">What's New</button>
+  </div>
+
+  <div id="home" class="section active">
+    <h2>Welcome to GRC!</h2>
+    <p>This is the home section.</p>
+  </div>
+
+  <div id="about" class="section">
+    <h2>About Us</h2>
+    <p>Information about our company.</p>
+  </div>
+
+  <div id="contact" class="section">
+    <h2>Contact Us</h2>
+    <p>Email: info@grc.com</p>
+  </div>
+
+  <div id="whats-new" class="section">
+    <h2>What's New</h2>
+    <p>Check out the latest updates here.</p>
+  </div>
+
+  <script>
+    function displayGreeting() {
+      const greetingElement = document.getElementById('greeting');
+      const hours = new Date().getHours();
+      let greeting = 'Good Day!';
+
+      if (hours < 12) {
+        greeting = 'Good Morning!';
+      } else if (hours < 18) {
+        greeting = 'Good Afternoon!';
+      } else {
+        greeting = 'Good Evening!';
+      }
+
+      greetingElement.textContent = greeting;
+    }
+
+    function showContent(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
